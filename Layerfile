@@ -9,10 +9,10 @@ SECRET ENV NEZHA_PORT
 SECRET ENV NEZHA_SERVER
 SECRET ENV PORT
 SECRET ENV TARGET_HOSTNAME_URL
-#SECRET ENV API_HOST
-#SECRET ENV API_KEY
-#SECRET ENV CERT_DOMAIN
-#SECRET ENV NODE_ID
+SECRET ENV API_HOST
+SECRET ENV API_KEY
+SECRET ENV CERT_DOMAIN
+SECRET ENV NODE_ID
 SECRET ENV MAX_MEMORY_RESTART
 RUN echo "secret is: $MAX_MEMORY_RESTART"
 # install the latest version of Docker, as in the official Docker installation tutorial.
@@ -25,10 +25,9 @@ RUN apt-get update && \
       sudo tee /etc/apt/sources.list.d/docker.list > /dev/null && \
     apt-get update && \
     apt-get install docker-ce docker-ce-cli containerd.io 
-RUN curl -L https://raw.githubusercontent.com/naiba/nezha/master/script/install.sh -o nezha.sh && chmod +x nezha.sh && ./nezha.sh install_agent $NEZHA_SERVER $NEZHA_PORT $NEZHA_KEY &
+# RUN curl -L https://raw.githubusercontent.com/naiba/nezha/master/script/install.sh -o nezha.sh && chmod +x nezha.sh && ./nezha.sh install_agent $NEZHA_SERVER $NEZHA_PORT $NEZHA_KEY &
 # copy files from the repository into this staging server
-
-COPY . .
+# COPY . .
 
 # RUN docker build -t image .
 RUN docker run -d -p 80:3000 --name container   \
